@@ -5,6 +5,9 @@ Peer-to-peer Roblox Studio test session tool. Hosts a local Studio server and co
 
 Studio Bridge is a small desktop tool for running peer-to-peer Roblox Studio test sessions. One person hosts a local Studio server, the app tries to open a direct connection to it automatically, and a second person joins it from the app using a short join code, so two people can playtest a place together without publishing it.
 
+<img width="1140" height="934" alt="image" src="https://github.com/user-attachments/assets/a477b08a-e664-4910-802e-6428df3419a3" />
+
+
 ## How it connects
 
 When you start hosting, Studio Bridge first tries to open a direct connection through your own router using UPnP — if your router supports it, this happens automatically and gives you a public address and a join code to share. If UPnP isn't available on your network (this is common on CGNAT connections or locked-down/office routers), the app shows a fallback panel: install the free agent from [playit.gg](https://playit.gg), point a tunnel at the local port shown in the app, and paste the address playit.gg gives you back into the app. Either way, every connection is protected by a random join code generated for that session — only someone who has been given the code can join, and anyone else's traffic is silently dropped.
@@ -19,9 +22,15 @@ When you start hosting, Studio Bridge first tries to open a direct connection th
 
 Open the app, choose **Host Session**, confirm the path to `RobloxStudioBeta.exe` (it's usually detected automatically), enter your Roblox user ID, and optionally attach a `.rblx` map file. Click **Start Hosting**. The app launches a local Studio server and attempts a UPnP connection; if that succeeds you'll see a join address and a join code appear, which you can send to whoever you're testing with. If UPnP isn't available, follow the on-screen playit.gg steps instead, then click **Use This Address** once you have your tunnel address.
 
+<img width="1131" height="931" alt="image" src="https://github.com/user-attachments/assets/fe099739-5cd3-4656-9fd7-06eb375e132c" />
+
+
 ## Joining a session
 
 Open the app, choose **Join Session**, and enter the join address and join code the host sent you, along with the path to your own `RobloxStudioBeta.exe`. Click **Connect**. The app opens a local proxy and launches Studio pointed at it, connecting you into the host's server.
+
+<img width="1137" height="952" alt="image" src="https://github.com/user-attachments/assets/a01b13f6-5685-4b86-928c-fb27cb414cec" />
+
 
 ## Notes
 
@@ -30,5 +39,20 @@ Open the app, choose **Join Session**, and enter the join address and join code 
 - This project has no relay servers, accounts, or telemetry of its own — the only two connection paths are your own router (UPnP) and the third-party playit.gg service you choose to configure yourself.
 
 ---
+
+"""
+Studio Bridge
+-------------
+A small host/join tool for running peer-to-peer Roblox Studio test sessions.
+
+Connection methods, tried in this order:
+  1. Direct (UPnP)   - the host's own router opens a port automatically.
+  2. playit.gg       - fallback used only when UPnP isn't available
+                       (CGNAT, locked-down router, etc). You run the free
+                       playit.gg agent yourself and point it at the port
+                       this app shows you; this app does not talk to any
+                       relay server it doesn't control.
+
+
 
 Made by [skja67](https://github.com/skja67)
